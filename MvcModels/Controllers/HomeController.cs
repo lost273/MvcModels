@@ -29,9 +29,14 @@ namespace MvcModels.Controllers
         public ActionResult DisplaySummary ([Bind(Prefix = "HomeAddress", Exclude = "Country")]AddressSummary summary) {
             return View(summary);
         }
-        public ActionResult Names (string[] names) {
-            names = names ?? new string[0];
+        public ActionResult Names (IList<string> names) {
+            names = names ?? new List<string>();
             return View(names);
+        }
+        public ActionResult Address () {
+            IList<AddressSummary> addresses = new List<AddressSummary>();
+            UpdateModel(addresses);
+            return View(addresses);
         }
     }
 }
